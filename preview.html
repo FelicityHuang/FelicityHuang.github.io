@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniBrand | Product Transparency, Beautifully Told</title>
+  <style>
+    :root {
+      --ivory: #f7f2ea;
+      --linen: #ebe1d3;
+      --sand: #d8c7ad;
+      --sage: #8d9b87;
+      --olive: #5d6657;
+      --charcoal: #1f2421;
+      --soft-black: #101411;
+      --muted-gold: #b59b6b;
+      --clay: #b9785f;
+      --white: #fffaf3;
+      --border: rgba(31, 36, 33, 0.12);
+      --shadow: 0 24px 60px rgba(31, 36, 33, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 242, 234, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+    }
+
+    .logo span {
+      color: var(--sage);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: rgba(31, 36, 33, 0.72);
+    }
+
+    .nav-links a:hover {
+      color: var(--soft-black);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-dark {
+      background: var(--soft-black);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(16, 20, 17, 0.18);
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(16, 20, 17, 0.22);
+    }
+
+    .btn-light {
+      border-color: var(--border);
+      background: rgba(255, 250, 243, 0.68);
+      color: var(--charcoal);
+    }
+
+    .btn-light:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      padding: 94px 0 72px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -180px;
+      right: -180px;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(141, 155, 135, 0.26), transparent 62%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 250, 243, 0.56);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    .mission-statement {
+      position: relative;
+      max-width: 680px;
+      margin: 0 0 34px;
+      padding: 24px 28px 24px 30px;
+      border-left: 4px solid var(--muted-gold);
+      border-radius: 0 28px 28px 0;
+      background: linear-gradient(90deg, rgba(255, 250, 243, 0.88), rgba(255, 250, 243, 0.42));
+      box-shadow: 0 18px 42px rgba(31, 36, 33, 0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .mission-statement::after {
+      content: '';
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181, 155, 107, 0.22), transparent 68%);
+      pointer-events: none;
+    }
+
+    .mission-statement span {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted-gold);
+    }
+
+    .mission-statement p {
+      position: relative;
+      z-index: 1;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.22;
+      letter-spacing: -0.035em;
+      color: var(--charcoal);
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+    }
+
+    h1 {
+      font-size: clamp(58px, 8vw, 104px);
+      max-width: 850px;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      font-size: 19px;
+      max-width: 620px;
+      color: rgba(31, 36, 33, 0.72);
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 42px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 620px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-item {
+      padding: 18px 18px 18px 0;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .trust-item span {
+      color: rgba(31, 36, 33, 0.6);
+      font-size: 13px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fashion-frame {
+      position: absolute;
+      inset: 34px 96px 70px 34px;
+      border-radius: 42px;
+      background:
+        linear-gradient(rgba(16,20,17,0.08), rgba(16,20,17,0.16)),
+        url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80');
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .passport-card {
+      position: relative;
+      width: min(430px, 92%);
+      margin-left: 90px;
+      padding: 28px;
+      border-radius: 34px;
+      background: rgba(255, 250, 243, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      box-shadow: 0 30px 80px rgba(31, 36, 33, 0.22);
+      backdrop-filter: blur(20px);
+    }
+
+    .passport-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .passport-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--olive);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .passport-card h3 {
+      font-size: 34px;
+      margin-bottom: 4px;
+    }
+
+    .passport-status {
+      height: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(141, 155, 135, 0.16);
+      color: var(--olive);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .passport-image {
+      height: 170px;
+      border-radius: 26px;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(rgba(31,36,33,0.08), rgba(31,36,33,0.12)),
+        url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .passport-data {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-bottom: 22px;
+    }
+
+    .data-chip {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(247, 242, 234, 0.88);
+      border: 1px solid var(--border);
+    }
+
+    .data-chip small {
+      display: block;
+      font-size: 11px;
+      color: rgba(31, 36, 33, 0.52);
+      margin-bottom: 4px;
+    }
+
+    .data-chip strong {
+      font-size: 14px;
+    }
+
+    .qr-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .qr {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      background:
+        linear-gradient(90deg, var(--soft-black) 50%, transparent 50%) 0 0/14px 14px,
+        linear-gradient(var(--soft-black) 50%, transparent 50%) 0 0/14px 14px,
+        var(--white);
+      border: 8px solid var(--white);
+      box-shadow: inset 0 0 0 1px var(--border);
+    }
+
+    .qr-row p {
+      font-size: 13px;
+      color: rgba(31, 36, 33, 0.68);
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 54px;
+    }
+
+    .section-header.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(38px, 5vw, 68px);
+      margin-bottom: 20px;
+    }
+
+    .section-copy {
+      font-size: 18px;
+      color: rgba(31, 36, 33, 0.68);
+    }
+
+    .problem {
+      background: var(--soft-black);
+      color: var(--white);
+      position: relative;
+    }
+
+    .problem .section-copy,
+    .problem-card p {
+      color: rgba(255, 250, 243, 0.68);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .problem-card {
+      min-height: 210px;
+      padding: 26px;
+      border-radius: 28px;
+      background: rgba(255, 250, 243, 0.07);
+      border: 1px solid rgba(255, 250, 243, 0.12);
+    }
+
+    .problem-card span {
+      display: block;
+      color: var(--sand);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 42px;
+      margin-bottom: 28px;
+    }
+
+    .problem-card h3 {
+      font-size: 25px;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step-card {
+      padding: 34px;
+      border-radius: 34px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 44px rgba(31, 36, 33, 0.06);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      color: var(--white);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .step-card h3 {
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+
+    .step-card p {
+      color: rgba(31, 36, 33, 0.66);
+    }
+
+    .demo {
+      background: var(--linen);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .demo-panel {
+      border-radius: 40px;
+      background: var(--white);
+      padding: 36px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .demo-product {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 26px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .demo-img {
+      height: 180px;
+      border-radius: 28px;
+      background:
+        linear-gradient(rgba(31,36,33,0.06), rgba(31,36,33,0.12)),
+        url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .demo-product h3 {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    .demo-product p {
+      color: rgba(31, 36, 33, 0.62);
+    }
+
+    .passport-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .passport-list-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .passport-list-item:last-child {
+      border-bottom: 0;
+    }
+
+    .passport-list-item strong {
+      color: var(--charcoal);
+    }
+
+    .passport-list-item span {
+      color: rgba(31, 36, 33, 0.62);
+      text-align: right;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .ai-card {
+      position: relative;
+      padding: 32px;
+      border-radius: 32px;
+      background: rgba(255, 250, 243, 0.72);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .ai-card::after {
+      content: '';
+      position: absolute;
+      right: -38px;
+      bottom: -38px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(141, 155, 135, 0.14);
+    }
+
+    .ai-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 17px;
+      background: var(--sage);
+      margin-bottom: 26px;
+    }
+
+    .ai-card h3 {
+      font-size: 31px;
+      margin-bottom: 12px;
+    }
+
+    .ai-card p {
+      color: rgba(31, 36, 33, 0.64);
+      position: relative;
+      z-index: 1;
+    }
+
+    .users {
+      background: var(--white);
+    }
+
+    .users-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      overflow: hidden;
+      background: var(--ivory);
+    }
+
+    .user-card {
+      padding: 32px;
+      min-height: 260px;
+      border-right: 1px solid var(--border);
+    }
+
+    .user-card:last-child {
+      border-right: 0;
+    }
+
+    .user-card h3 {
+      font-size: 29px;
+      margin-bottom: 18px;
+    }
+
+    .user-card p {
+      color: rgba(31, 36, 33, 0.64);
+    }
+
+    .team {
+      background: var(--ivory);
+      padding: 96px 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.925fr 0.925fr;
+      gap: 22px;
+    }
+
+    .team-card {
+      padding: 26px;
+      border-radius: 36px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 44px rgba(31, 36, 33, 0.06);
+    }
+
+    .founder-card {
+      background: linear-gradient(145deg, var(--white), rgba(216, 199, 173, 0.34));
+    }
+
+    .team-photo {
+      height: 260px;
+      border-radius: 28px;
+      margin-bottom: 24px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(31, 36, 33, 0.08);
+    }
+
+    .founder-photo {
+      background-image:
+        linear-gradient(rgba(31,36,33,0.04), rgba(31,36,33,0.10)),
+        url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80');
+    }
+
+    .cto-photo {
+      background-image:
+        linear-gradient(rgba(31,36,33,0.06), rgba(31,36,33,0.14)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80');
+    }
+
+    .policy-photo {
+      background-image:
+        linear-gradient(rgba(31,36,33,0.06), rgba(31,36,33,0.14)),
+        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80');
+    }
+
+    .team-role {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(141, 155, 135, 0.15);
+      color: var(--olive);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .team-card h3 {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .team-card p {
+      color: rgba(31, 36, 33, 0.64);
+    }
+
+    .philosophy {
+      padding: 115px 0;
+      background:
+        linear-gradient(rgba(16,20,17,0.58), rgba(16,20,17,0.58)),
+        url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .philosophy .container {
+      max-width: 900px;
+    }
+
+    .philosophy p {
+      color: rgba(255, 250, 243, 0.76);
+      font-size: 20px;
+    }
+
+    .cta {
+      padding: 95px 0;
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 36px;
+      padding: 54px;
+      border-radius: 44px;
+      background: var(--soft-black);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin-bottom: 14px;
+    }
+
+    .cta-box p {
+      color: rgba(255, 250, 243, 0.68);
+      font-size: 18px;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(255, 250, 243, 0.1);
+      border: 1px solid rgba(255, 250, 243, 0.14);
+    }
+
+    .cta-form input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--white);
+      padding: 0 12px;
+      font-size: 15px;
+    }
+
+    .cta-form input::placeholder {
+      color: rgba(255, 250, 243, 0.52);
+    }
+
+    .cta-form .btn {
+      background: var(--white);
+      color: var(--soft-black);
+      white-space: nowrap;
+    }
+
+    footer {
+      padding: 36px 0 54px;
+      color: rgba(31, 36, 33, 0.54);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+
+    /* Visual traceability passport demo */
+    .trace-showcase {
+      --trace-x: 50%;
+      --trace-y: 50%;
+      --trace-shift-x: 0px;
+      --trace-shift-y: 0px;
+      position: relative;
+      padding: 104px 0;
+      background:
+        radial-gradient(circle at var(--trace-x) var(--trace-y), rgba(141, 155, 135, 0.23), transparent 20rem),
+        radial-gradient(circle at 14% 18%, rgba(181, 155, 107, 0.18), transparent 20rem),
+        linear-gradient(135deg, var(--linen), #f4eee4 48%, #e7dccb);
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trace-showcase::before {
+      content: '';
+      position: absolute;
+      inset: -8%;
+      opacity: 0.16;
+      pointer-events: none;
+      transform: translate3d(calc(var(--trace-shift-x) * -0.18), calc(var(--trace-shift-y) * -0.18), 0) scale(1.05);
+      transition: transform 0.14s ease-out;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='640' viewBox='0 0 1200 640'%3E%3Cg fill='none' stroke='%231f2421' stroke-width='1.2' opacity='.55'%3E%3Cpath d='M169 200c34-35 83-41 133-31 58 11 95 39 138 50 46 12 90 7 119-18 31-27 48-71 93-84 41-12 86 6 127 27 50 26 95 44 154 33 49-9 92 0 120 31 31 34 26 73-11 96-35 21-90 16-130 31-52 20-69 74-116 101-47 28-113 22-169-2-63-27-99-56-159-42-42 10-75 38-119 37-39-1-74-27-90-63-18-42 1-82-25-113-20-25-55-28-65-53z'/%3E%3Cpath d='M723 96c35 15 69 36 82 64 16 35-5 74-43 80-39 6-71-23-104-36-32-13-75-7-92-40-15-29 6-65 41-76 35-10 79-8 116 8z'/%3E%3Cpath d='M832 308c28-21 70-22 100-6 40 22 40 65 77 88 32 21 86 15 115 43 21 21 11 56-19 72-36 18-85 3-119 19-29 14-38 46-65 56-29 12-66-2-83-27-22-32-1-72-20-106-17-30-60-45-65-78-4-23 25-47 79-61z'/%3E%3Cpath d='M460 480c44 17 95 4 134 23 39 18 56 67 27 96-31 30-90 27-136 9-43-18-78-46-121-43-38 2-76 30-111 15-29-13-40-51-22-76 22-30 69-30 106-24 45 7 79-15 123 0z'/%3E%3Cpath d='M95 340c24 12 52 12 77 20 30 10 59 35 48 65-10 29-51 37-84 28-37-10-60-40-93-55-23-11-37-35-27-53 12-20 49-21 79-5z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .trace-showcase::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: radial-gradient(circle at 1px 1px, rgba(31,36,33,0.38) 1px, transparent 0);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, transparent, black 12%, black 82%, transparent);
+    }
+
+    .trace-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .trace-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+      min-height: 640px;
+      padding: 38px;
+      border-radius: 44px;
+      background: rgba(255, 250, 243, 0.74);
+      border: 1px solid rgba(31, 36, 33, 0.1);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .trace-intro h2 {
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .trace-intro .section-copy {
+      max-width: 450px;
+      font-size: 17px;
+    }
+
+    .trace-badges {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .trace-badge {
+      min-height: 112px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(247, 242, 234, 0.82);
+    }
+
+    .trace-badge strong {
+      display: block;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 32px;
+      line-height: 1;
+      color: var(--olive);
+      letter-spacing: -0.04em;
+      margin-bottom: 9px;
+    }
+
+    .trace-badge span {
+      display: block;
+      color: rgba(31, 36, 33, 0.62);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .trace-stage {
+      position: relative;
+      min-height: 640px;
+      padding: 24px;
+      border-radius: 44px;
+      background:
+        linear-gradient(145deg, rgba(16,20,17,0.94), rgba(31,36,33,0.88)),
+        radial-gradient(circle at var(--trace-x) var(--trace-y), rgba(141,155,135,0.26), transparent 20rem);
+      color: var(--white);
+      box-shadow: 0 32px 90px rgba(31,36,33,0.28);
+      overflow: hidden;
+      border: 1px solid rgba(255, 250, 243, 0.13);
+    }
+
+    .trace-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--trace-x) var(--trace-y), rgba(255,250,243,0.13), transparent 18rem),
+        linear-gradient(transparent, rgba(0,0,0,0.18));
+    }
+
+    .trace-map-panel {
+      position: relative;
+      z-index: 1;
+      min-height: 380px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 250, 243, 0.12);
+      background:
+        radial-gradient(circle at 50% 48%, rgba(141,155,135,0.28), transparent 14rem),
+        rgba(255,250,243,0.045);
+    }
+
+    .trace-map-panel svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .trace-route {
+      stroke-dasharray: 8 10;
+      animation: traceFlow 5.8s linear infinite;
+    }
+
+    @keyframes traceFlow {
+      from { stroke-dashoffset: 120; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .trace-node {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--sand);
+      box-shadow:
+        0 0 0 9px rgba(216, 199, 173, 0.12),
+        0 0 28px rgba(216, 199, 173, 0.48);
+    }
+
+    .trace-node::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 18px;
+      top: -12px;
+      white-space: nowrap;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,250,243,0.16);
+      background: rgba(16,20,17,0.55);
+      backdrop-filter: blur(12px);
+      color: rgba(255,250,243,0.86);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cotton-product-float {
+      position: absolute;
+      left: 28px;
+      bottom: 24px;
+      width: 230px;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(255,250,243,0.12);
+      border: 1px solid rgba(255,250,243,0.16);
+      backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .cotton-shirt-icon {
+      width: 74px;
+      height: 82px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 42% 24%, rgba(255,255,255,0.58), transparent 3rem),
+        linear-gradient(145deg, #efe1ca, #d8c7ad);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+    }
+
+    .cotton-product-float strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .cotton-product-float span {
+      display: block;
+      font-size: 12px;
+      color: rgba(255,250,243,0.62);
+    }
+
+    .trace-origin-cards {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .trace-origin-card {
+      min-height: 116px;
+      padding: 16px;
+      border-radius: 24px;
+      background: rgba(255,250,243,0.08);
+      border: 1px solid rgba(255,250,243,0.11);
+    }
+
+    .trace-origin-card small {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255,250,243,0.46);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .trace-origin-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      letter-spacing: -0.025em;
+    }
+
+    .trace-origin-card span {
+      color: rgba(255,250,243,0.62);
+      font-size: 13px;
+    }
+
+    .trace-timeline {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .trace-time-card {
+      min-height: 132px;
+      padding: 16px;
+      border-radius: 23px;
+      background: rgba(255,250,243,0.075);
+      border: 1px solid rgba(255,250,243,0.11);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .trace-time-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,250,243,0.12);
+    }
+
+    .trace-time-card b {
+      display: block;
+      color: var(--sand);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .trace-time-card strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .trace-time-card span {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: rgba(141,155,135,0.16);
+      color: rgba(255,250,243,0.68);
+      font-size: 11px;
+    }
+
+    .trace-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      color: rgba(255,250,243,0.48);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .demo-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 540px;
+      }
+
+      .passport-card {
+        margin-left: 40px;
+      }
+
+      .problem-grid,
+      .users-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-grid,
+      .ai-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-card:nth-child(2) {
+        border-right: 0;
+      }
+
+      .user-card:nth-child(1),
+      .user-card:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .hero {
+        padding-top: 62px;
+      }
+
+      h1 {
+        font-size: 56px;
+      }
+
+      .hero-copy,
+      .section-copy,
+      .philosophy p {
+        font-size: 16px;
+      }
+
+      .trust-row,
+      .problem-grid,
+      .users-grid,
+      .demo-product,
+      .passport-data {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 490px;
+      }
+
+      .fashion-frame {
+        inset: 20px 30px 80px 0;
+      }
+
+      .passport-card {
+        width: 100%;
+        margin-left: 0;
+        padding: 22px;
+      }
+
+      .problem-card,
+      .step-card,
+      .demo-panel,
+      .ai-card,
+      .user-card,
+      .cta-box {
+        padding: 24px;
+      }
+
+      .user-card,
+      .user-card:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .user-card:last-child {
+        border-bottom: 0;
+      }
+
+      .cta-form {
+        flex-direction: column;
+        border-radius: 26px;
+      }
+
+      .cta-form input {
+        min-height: 46px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .trace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trace-intro,
+      .trace-stage {
+        min-height: auto;
+      }
+
+      .trace-timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .trace-showcase {
+        padding: 72px 0;
+      }
+
+      .trace-intro,
+      .trace-stage {
+        padding: 22px;
+        border-radius: 32px;
+      }
+
+      .trace-badges,
+      .trace-origin-cards,
+      .trace-timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .trace-map-panel {
+        min-height: 360px;
+      }
+
+      .cotton-product-float {
+        width: calc(100% - 36px);
+        left: 18px;
+        bottom: 18px;
+      }
+
+      .trace-node::after {
+        font-size: 10px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="#" class="logo">Mini<span>Brand</span></a>
+        <div class="nav-links">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#passport">Passport Demo</a>
+          <a href="#brands">For Brands</a>
+          <a href="#team">Team</a>
+          <a href="#contact" class="btn btn-dark">Start Early Access</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">AI-powered Digital Product Passports</div>
+          <div class="mission-statement">
+            <span>Mission</span>
+            <p>To help small and emerging fashion brands turn fragmented product data and transparency into trust, and sustainability into lasting brand value.</p>
+          </div>
+          <h1>Product transparency, beautifully told.</h1>
+          <p class="hero-copy">
+            MiniBrand helps emerging fashion brands turn product data, supplier documents and sustainability evidence into beautiful, trustworthy digital product passports.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-dark">Create Your First Passport</a>
+            <a href="#passport" class="btn btn-light">See Passport Demo</a>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item">
+              <strong>Structured</strong>
+              <span>Product data in one place</span>
+            </div>
+            <div class="trust-item">
+              <strong>Beautiful</strong>
+              <span>Consumer-facing storytelling</span>
+            </div>
+            <div class="trust-item">
+              <strong>Trusted</strong>
+              <span>Evidence-led sustainability claims</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Digital product passport preview">
+          <div class="fashion-frame"></div>
+          <div class="passport-card">
+            <div class="passport-top">
+              <div>
+                <div class="passport-label">Digital Product Passport</div>
+                <h3>Linen Summer Jacket</h3>
+                <p>By MiniBrand Studio</p>
+              </div>
+              <div class="passport-status">Verified</div>
+            </div>
+            <div class="passport-image"></div>
+            <div class="passport-data">
+              <div class="data-chip">
+                <small>Material</small>
+                <strong>100% European Linen</strong>
+              </div>
+              <div class="data-chip">
+                <small>Origin</small>
+                <strong>Portugal / UK</strong>
+              </div>
+              <div class="data-chip">
+                <small>Production</small>
+                <strong>Small Batch</strong>
+              </div>
+              <div class="data-chip">
+                <small>Care</small>
+                <strong>Cold Wash / Repair</strong>
+              </div>
+            </div>
+            <div class="qr-row">
+              <div class="qr"></div>
+              <p>Scan to see material origin, care guidance, repair notes and the story behind the product.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="problem" id="product">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">The problem</div>
+          <h2>Sustainability is becoming essential. But for small brands, the data is everywhere.</h2>
+          <p class="section-copy">
+            Product information often sits across supplier emails, material sheets, certificates, spreadsheets and founder knowledge. MiniBrand turns that scattered information into a clear, credible product story.
+          </p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <span>01</span>
+            <h3>Scattered files</h3>
+            <p>Supplier documents, images and spreadsheets are difficult to manage across every product.</p>
+          </div>
+          <div class="problem-card">
+            <span>02</span>
+            <h3>Unclear claims</h3>
+            <p>Brands need to communicate sustainability without vague or unsupported language.</p>
+          </div>
+          <div class="problem-card">
+            <span>03</span>
+            <h3>Limited capacity</h3>
+            <p>Small teams rarely have dedicated compliance, data or sustainability departments.</p>
+          </div>
+          <div class="problem-card">
+            <span>04</span>
+            <h3>Hidden value</h3>
+            <p>Materials, craft and sourcing choices often remain invisible to customers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-kicker">How it works</div>
+          <h2>From scattered product data to a living product passport.</h2>
+          <p class="section-copy">
+            MiniBrand keeps the workflow simple: collect information, structure it with AI support, then publish a passport your customers can scan and trust.
+          </p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Collect</h3>
+            <p>Upload supplier documents, product images, material details, certificates and care information into one structured workspace.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Understand</h3>
+            <p>AI extracts key information, identifies missing evidence and helps organise sustainability claims into clear product data.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Publish</h3>
+            <p>Create a beautiful Digital Product Passport with a QR code for your website, swing tag, packaging or retail display.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trace-showcase" id="passport">
+      <div class="container trace-grid">
+        <div class="trace-intro">
+          <div>
+            <div class="section-kicker">Visual passport demo</div>
+            <h2>See a product’s journey at a glance.</h2>
+            <p class="section-copy">
+              A MiniBrand passport can turn one everyday cotton top into a clear visual story: origin, material flow, timeline and evidence status.
+            </p>
+          </div>
+
+          <div class="trace-badges">
+            <div class="trace-badge">
+              <strong>100%</strong>
+              <span>Cotton casual top with origin-level product data.</span>
+            </div>
+            <div class="trace-badge">
+              <strong>2</strong>
+              <span>Material origins: China and Australia.</span>
+            </div>
+            <div class="trace-badge">
+              <strong>5</strong>
+              <span>Key stages from harvest to finished garment.</span>
+            </div>
+            <div class="trace-badge">
+              <strong>QR</strong>
+              <span>Ready for swing tag, website and buyer packs.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trace-stage" aria-label="Interactive cotton top traceability visual">
+          <div class="trace-map-panel">
+            <svg viewBox="0 0 900 430" aria-hidden="true">
+              <g fill="none" stroke="rgba(255,250,243,.28)" stroke-width="1.2">
+                <path d="M85 135C136 96 205 100 266 128C333 158 393 177 458 146C517 119 567 83 643 107C721 132 780 147 849 124"/>
+                <path d="M142 232C213 198 272 228 322 252C397 288 464 282 528 242C591 202 654 214 718 248C763 272 814 278 873 251"/>
+                <path d="M72 318C168 340 268 324 355 343C451 364 551 372 644 337C713 311 786 320 865 346"/>
+                <path d="M350 78C323 123 325 169 363 199C404 233 398 278 358 316"/>
+                <path d="M560 70C524 123 526 178 570 219C615 263 606 323 554 366"/>
+              </g>
+              <path class="trace-route" d="M644 315C594 270 542 222 468 188C425 168 383 154 342 140" stroke="rgba(216,199,173,.9)" stroke-width="2.7" fill="none"/>
+              <path class="trace-route" d="M565 120C533 142 500 164 468 188" stroke="rgba(141,155,135,.95)" stroke-width="2.7" fill="none"/>
+              <path class="trace-route" d="M468 188C418 208 367 231 318 258" stroke="rgba(255,250,243,.7)" stroke-width="2.1" fill="none"/>
+            </svg>
+
+            <div class="trace-node" style="left:72%; top:73%;" data-label="Australia cotton"></div>
+            <div class="trace-node" style="left:63%; top:28%;" data-label="China cotton"></div>
+            <div class="trace-node" style="left:52%; top:44%;" data-label="Jiangsu spinning"></div>
+            <div class="trace-node" style="left:35%; top:60%;" data-label="Guangdong cut & sew"></div>
+
+            <div class="cotton-product-float">
+              <div class="cotton-shirt-icon">
+                <svg viewBox="0 0 96 108" width="58" height="66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M31 13C36 20 42 23 48 23C55 23 61 20 66 13L88 25L80 47L69 43V96H27V43L16 47L8 25L31 13Z" fill="rgba(255,250,243,.92)"/>
+                  <path d="M31 13C36 20 42 23 48 23C55 23 61 20 66 13" stroke="rgba(31,36,33,.34)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M36 61C43 67 53 67 60 61" stroke="rgba(141,155,135,.82)" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Everyday Cotton Top</strong>
+                <span>MB-CT-001 · Passport ready</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="trace-origin-cards">
+            <div class="trace-origin-card">
+              <small>Fibre A</small>
+              <strong>Xinjiang, China</strong>
+              <span>55% cotton share</span>
+            </div>
+            <div class="trace-origin-card">
+              <small>Fibre B</small>
+              <strong>Queensland, Australia</strong>
+              <span>45% cotton share</span>
+            </div>
+            <div class="trace-origin-card">
+              <small>Assembly</small>
+              <strong>Jiangsu → Guangdong</strong>
+              <span>Spin, knit, cut & sew</span>
+            </div>
+          </div>
+
+          <div class="trace-timeline">
+            <div class="trace-time-card"><b>2023</b><strong>Cotton harvest</strong><span>Raw material</span></div>
+            <div class="trace-time-card"><b>2024</b><strong>Bale record</strong><span>Traceability</span></div>
+            <div class="trace-time-card"><b>2025</b><strong>Spinning</strong><span>Yarn</span></div>
+            <div class="trace-time-card"><b>2025</b><strong>Knitting & dyeing</strong><span>Fabric</span></div>
+            <div class="trace-time-card"><b>2026</b><strong>Cut & sew</strong><span>Finished top</span></div>
+          </div>
+
+          <div class="trace-note">Demo data only · Each stage can link to certificates, supplier files and product evidence.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-kicker">AI assistant</div>
+          <h2>Your sustainability assistant for product storytelling and evidence management.</h2>
+          <p class="section-copy">
+            MiniBrand supports your team without replacing brand judgement. It helps you stay clearer, more transparent and better prepared.
+          </p>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card">
+            <div class="ai-icon"></div>
+            <h3>Document organiser</h3>
+            <p>Sort supplier files, material sheets, product details and certification evidence into one product-level data structure.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ai-icon"></div>
+            <h3>Claim assistant</h3>
+            <p>Highlight vague sustainability statements and suggest clearer wording grounded in available product evidence.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ai-icon"></div>
+            <h3>Story generator</h3>
+            <p>Turn technical product information into elegant, customer-friendly storytelling that still feels human and premium.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ai-icon"></div>
+            <h3>Gap checker</h3>
+            <p>Identify missing product, material, origin, care or circularity information before a passport goes live.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="users" id="brands">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Built for emerging brands</div>
+          <h2>Not corporate compliance software. A practical product intelligence layer for fashion founders.</h2>
+        </div>
+        <div class="users-grid">
+          <div class="user-card">
+            <h3>Sustainable start-ups</h3>
+            <p>For labels built around ethical sourcing, responsible materials and small-batch production.</p>
+          </div>
+          <div class="user-card">
+            <h3>Independent designers</h3>
+            <p>For designers who want to communicate craft, origin and product decisions with more confidence.</p>
+          </div>
+          <div class="user-card">
+            <h3>Boutique labels</h3>
+            <p>For brands selling online, at pop-ups, through stockists or at concept stores.</p>
+          </div>
+          <div class="user-card">
+            <h3>Circular projects</h3>
+            <p>For repair, resale, rental and upcycling models that need stronger product traceability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-kicker">Team</div>
+          <h2>Built by people who understand fashion, technology and responsible innovation.</h2>
+          <p class="section-copy">
+            MiniBrand brings together fashion industry insight, AI product development and policy-aware sustainability strategy to help emerging brands prepare for the future of product transparency.
+          </p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card founder-card">
+            <div class="team-photo founder-photo"></div>
+            <div class="team-role">Founder & CEO</div>
+            <h3>Yuanfeng Huang</h3>
+            <p>
+              Leads MiniBrand’s vision, brand strategy and customer discovery. With a background across fashion, sustainable consumption, applied AI and entrepreneurship, Yuanfeng focuses on turning product transparency into real brand value for emerging fashion businesses.
+            </p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo cto-photo"></div>
+            <div class="team-role">CTO</div>
+            <h3>Xin Jiang</h3>
+            <p>
+              Responsible for the technical architecture behind MiniBrand, including AI-assisted document processing, product data structure, Digital Product Passport generation, QR workflows and future blockchain/IPFS integration.
+            </p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo policy-photo"></div>
+            <div class="team-role">Policy & Strategy Lead</div>
+            <h3>Dr John Baruch</h3>
+            <p>
+              Guides MiniBrand’s responsible innovation, sustainability positioning and policy alignment, helping brands prepare for future expectations around traceability, transparency, circularity and evidence-based claims.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy">
+      <div class="container">
+        <div class="section-kicker">Brand philosophy</div>
+        <h2>Sustainability should not feel like paperwork.</h2>
+        <p>
+          Fashion is emotional. Sustainability should be too. MiniBrand helps brands transform transparency into trust, and trust into long-term brand value.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Start with one product. Build trust from there.</h2>
+            <p>Create your first MiniBrand product passport and show customers the story behind what they buy.</p>
+          </div>
+          <form class="cta-form">
+            <input type="email" placeholder="Enter your email" aria-label="Email address" />
+            <button class="btn" type="button">Join Early Access</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <p>© 2026 MiniBrand. Product transparency, beautifully told.</p>
+        <p>AI · Digital Product Passports · Sustainable Fashion</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const traceSection = document.querySelector('.trace-showcase');
+
+    if (traceSection) {
+      traceSection.addEventListener('pointermove', (event) => {
+        const rect = traceSection.getBoundingClientRect();
+        const localX = event.clientX - rect.left;
+        const localY = event.clientY - rect.top;
+        const shiftX = (event.clientX - window.innerWidth / 2) / 26;
+        const shiftY = (event.clientY - window.innerHeight / 2) / 26;
+
+        traceSection.style.setProperty('--trace-x', `${localX}px`);
+        traceSection.style.setProperty('--trace-y', `${localY}px`);
+        traceSection.style.setProperty('--trace-shift-x', `${shiftX}px`);
+        traceSection.style.setProperty('--trace-shift-y', `${shiftY}px`);
+      });
+    }
+  </script>
+
+</body>
+</html>
